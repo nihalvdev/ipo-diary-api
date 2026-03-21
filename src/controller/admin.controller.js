@@ -8,7 +8,7 @@ export const addIpo = asyncHandler(async (req, res) => {
     const {
         companyName, issueType, status,
         openDate, closeDate, listingDate, price,
-        lotSize, minInvestament, issueSize, about
+        lotSize, minInvestment, issueSize, about
     } = req.body;
 
     const localPath = req.file?.path;
@@ -29,7 +29,7 @@ export const addIpo = asyncHandler(async (req, res) => {
     const requiredFields = [
         "companyName", "issueType", "status", "openDate",
         "closeDate", "listingDate", "price", "lotSize",
-        "minInvestament", "issueSize"
+        "minInvestment", "issueSize"
     ];
 
     const missingFields = requiredFields.filter(field => !req.body[field]);
@@ -49,7 +49,7 @@ export const addIpo = asyncHandler(async (req, res) => {
     const ipo = await createNewIpo({
         companyName, logoUrl, issueType, status,
         openDate, closeDate, listingDate, price,
-        lotSize, minInvestament, issueSize, about
+        lotSize, minInvestment, issueSize, about
     });
 
     return res.status(201).json(

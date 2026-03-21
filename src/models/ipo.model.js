@@ -38,7 +38,7 @@ const ipoSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    minInvestament: {
+    minInvestment: {
         type: Number,
         required: true
     },
