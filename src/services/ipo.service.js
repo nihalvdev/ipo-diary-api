@@ -40,12 +40,22 @@ export const fetchAllIpos = async ({
   };
 };
 
-export const getIpoById = async({ ipoId }) => {
-    const ipo = await Ipo.findOne({ _id: ipoId });
+export const getIpoById = async ({ ipoId }) => {
+  const ipo = await Ipo.findOne({ _id: ipoId });
 
-    if(!ipo) {
-        throw new ApiError(404, "IPO not found");
-    };
+  if (!ipo) {
+    throw new ApiError(404, "IPO not found");
+  };
 
-    return ipo;
+  return ipo;
 };
+
+export const searchIpoByName = async (companyName) => {
+  const escapedName = companyName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  const ipos = await Ipo.find({
+    companyName: { $regex: escapedName, $options: "i" }
+  }).limit(10).sort({ openDate: -1 });
+
+  return ipos;
+}
