@@ -23,7 +23,7 @@ export const fetchAllIpos = async ({
 
   const [ipos, total] = await Promise.all([
     Ipo.find(filter)
-      .sort({ openDate: 1 })
+      .sort({ openDate: -1 })
       .skip(skip)
       .limit(limit),
     Ipo.countDocuments(filter),
